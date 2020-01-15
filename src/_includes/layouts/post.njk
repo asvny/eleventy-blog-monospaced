@@ -1,0 +1,31 @@
+---
+ css: 
+    - 'post'
+    - 'prisma'
+ js: 
+    - 'post'
+---
+{% extends 'layouts/base.njk' %}
+
+{% block content %}
+    <section class="PageHeader MarginTop-xxl">
+        <h1 class="Heading PageHeader--Heading">
+            <span>{{title}}</span>
+        </h1>
+        <div class="Text--Secondary MarginY-xxs">
+            <time>{{ date | date_formatted }}</time>
+            <span>
+                {% for tag in tags %}
+                    <a href="/tags/{{tag}}" class="TagLink">#{{ tag }}</a>
+                {% endfor %}
+            </span>
+        </div>
+
+        <div class="PostSummary">
+            <strong>tl;dr: </strong>{{summary}}
+        </div>
+    </section>
+    <article class="Article">
+        {{ content | safe }}
+    </article>
+{% endblock %}

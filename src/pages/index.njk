@@ -1,0 +1,42 @@
+---
+title: "Frontend Developer"
+summary: "Currently interested in CSS architecture, functional programming, React, design systems, and state machines."
+permalink: /index.html
+layout: layouts/home
+---
+
+<section>
+  <ul class="List MarginTop-xxl">
+    {% for post in collections.posts | take(site.maxPostsInHomePage) %}
+      <li class="List-Item">
+        <h1 class="Heading">
+          <a class="List-ItemLink" href="{{ post.url }}">
+            <span class="TitleShadow">{{ post.data.title }}</span>
+            <span aria-hiddent="true" class="List-ItemVisitedStatus"></span>
+          </a>
+        </h1>
+        <div class="Text--Secondary MarginY-xxs">
+          <time>{{ post.date | date_formatted }}</time>
+          <span>
+            {% for tag in post.data.tags %}
+              <a href="/tags/{{tag}}" class="TagLink">#{{ tag }}</a>
+            {% endfor %}
+          </span>
+        </div>
+        <p class="Margin-0">{{ post.data.summary | markdownify_inline | safe }}</p>
+        <div>
+          <a href="{{ post.url }}" class="Link" >read more ⟶</a>
+        </div>
+      </li>
+      {# <hr class="List-Separator"> #}
+    {% endfor %}
+  </ul>
+</section>
+
+{% if collections.posts.length > site.maxPostsInHomePage %}
+  <section class="MarginTop-xxxl">
+    For more blog posts, you can visit
+    <a href="/archive" class="Link">
+      the archive</a>.
+  </section>
+{% endif %}
