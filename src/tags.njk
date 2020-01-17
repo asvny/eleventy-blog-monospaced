@@ -1,0 +1,29 @@
+---
+pagination:
+  data: collections
+  size: 1
+  alias: tag
+  addAllPagesToCollections: true
+layout: layouts/default.njk
+renderData:
+  title: Tagged “{{ tag }}”
+permalink: /tags/{{ tag }}/
+css:
+ - post-list
+---
+
+{% set tagPosts = collections[tag] %}
+
+<h1 class="Heading MarginTop-xxl">
+    <span class="TitleShadow">Posts tagged with “{{ tag }}”</span>
+</h1>
+
+<section class="PostListWrapper" style="--totalPosts: {{ tagPosts.length + 1 }}">
+    <ol class="PostList MarginTop-l">
+        {% for item in tagPosts %}
+            <li>
+                <a class="Link PostList-Link MarginTop-s" href="{{item.url}}">{{ item.data.title }}</a>
+            </li>
+        {% endfor %}
+    </ol>
+</section>

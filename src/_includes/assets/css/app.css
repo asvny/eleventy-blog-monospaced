@@ -182,7 +182,7 @@ ol {
 }
 
 .TitleShadow {
-  box-shadow: 0 -12px 0 rgba(97, 97, 255, 0.125) inset;
+  box-shadow: 0 -12px 0 var(--primary-shadow) inset;
 }
 
 .Header {

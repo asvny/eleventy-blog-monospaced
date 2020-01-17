@@ -11,7 +11,9 @@
   --dark-bg: #2d2a2a;
   --dark-text-color: #fff;
 
-  --primary: #6161ff;
+  --primary: #e41867;
+  --primary-shadow: hsla(337, 81%, 49%, 0.12);
+
   --blockquote-color: #73728c;
 
   --separator-color: #d0d6d8;

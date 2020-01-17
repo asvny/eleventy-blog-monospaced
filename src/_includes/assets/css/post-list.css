@@ -1,21 +1,21 @@
-.ArchiveList {
+.PostList {
   list-style: none;
 }
 
-.ArchiveList-Link {
+.PostList-Link {
   display: inline-block;
   letter-spacing: -0.5px;
 }
 
-.ArchiveList-Link:after {
+.PostList-Link:after {
   transform: scaleY(0);
 }
 
-ul.ArchiveList {
+.PostListWrapper {
   counter-reset: list var(--totalPosts);
 }
 
-ol.ArchiveList li:before {
+ol.PostList li:before {
   counter-increment: list -1;
   content: counter(list) ". ";
 }
