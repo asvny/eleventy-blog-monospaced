@@ -12,14 +12,15 @@ css:
 </h1>
 
 {% set archive = collections.posts | groupByYear %}
+
 <section class="PostListWrapper" style="--totalPosts: {{ collections.posts.length + 1 }}">
     <ul class="PostList MarginTop-l" >
-        {% for year, items in archive %}
+        {% for item in archive %}
             <li class="List-Item">
                 <h2 class="Heading">
-                    <span class="">{{ year}}</span></h2>
+                    <span class="">{{ item | first }}</span></h2>
                 <ol class="PostList">
-                    {% for item in items %}
+                    {% for item in item | last %}
                         <li>
                             <a class="Link PostList-Link MarginTop-s" href="{{item.url}}">{{ item.data.title }}</a>
                         </li>

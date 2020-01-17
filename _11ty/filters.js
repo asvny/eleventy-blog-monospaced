@@ -49,28 +49,34 @@ module.exports = {
 
     markdownify: str => markdown.render(str || ''),
 
+    addYear: _collection => {
+        let collection = _collection.slice()
+
+        collection = collection.map(post => {
+            return {
+                ...post,
+                year: DateTime.fromJSDate(parseDate(post.date)).toFormat('yyyy')
+            }
+        })
+
+        return collection;
+    },
+
     groupByYear: collection => {
-        let hash = {};
-        let keys = new Set();
+        let yearMap = new Map();
 
         for (let item of collection) {
             let year = DateTime.fromJSDate(parseDate(item.date)).toFormat('yyyy');
+            // let currentItems = ;
 
-            hash[year] = Array.isArray(hash[year]) ? hash[year].concat(item) : [item];
-            keys.add(year);
+            // if (Array.isArray(currentItems)) {
+            //     currentItems.push(item)
+            // } else {
+            yearMap.set(year, [item, ...(yearMap.get(year) || [])])
+            //}
         }
 
-        let keysArray = [...keys].sort((a, b) => parseInt(a, 10) < parseInt(b, 10));
-        let orderedHash = {};
-
-        for (let i = keysArray.length - 1; i >= 0; i--) {
-            let year = keysArray[i];
-            orderedHash[year] = hash[year] //.sort((a, b) => a.date < b.date)
-        }
-
-
-
-        return orderedHash
+        return [...yearMap]
     },
 
     mailHref: str => {
