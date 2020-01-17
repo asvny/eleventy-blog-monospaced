@@ -49,6 +49,30 @@ module.exports = {
 
     markdownify: str => markdown.render(str || ''),
 
+    groupByYear: collection => {
+        let hash = {};
+        let keys = new Set();
+
+        for (let item of collection) {
+            let year = DateTime.fromJSDate(parseDate(item.date)).toFormat('yyyy');
+
+            hash[year] = Array.isArray(hash[year]) ? hash[year].concat(item) : [item];
+            keys.add(year);
+        }
+
+        let keysArray = [...keys].sort((a, b) => parseInt(a, 10) < parseInt(b, 10));
+        let orderedHash = {};
+
+        for (let i = keysArray.length - 1; i >= 0; i--) {
+            let year = keysArray[i];
+            orderedHash[year] = hash[year] //.sort((a, b) => a.date < b.date)
+        }
+
+
+
+        return orderedHash
+    },
+
     mailHref: str => {
         if (/\S+@\S+\.\S+/.test(str)) {
             return `mailto:${str}`
@@ -61,10 +85,7 @@ module.exports = {
 
     strip_html: str => str.replace(/<script.*?<\/script>|<!--.*?-->|<style.*?<\/style>|<.*?>/g, ''),
 
-    date_to_permalink: obj => {
-        const date = parseDate(obj);
-        return DateTime.fromJSDate(date).toFormat('yyyy/MM');
-    },
+
 
     date_formatted: obj => {
         const date = parseDate(obj);

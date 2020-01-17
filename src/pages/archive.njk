@@ -1,0 +1,63 @@
+---
+title: "Archive"
+summary: ""
+permalink: "/archive/index.html"
+layout: layouts/default
+css: 
+  - archive
+---
+
+<h1 class="Heading MarginTop-xxl">
+
+    <span class="TitleShadow">Archive</span>
+
+</h1>
+
+{% set archive = collections.posts | groupByYear %}
+<section>
+    <ul class="ArchiveList MarginTop-l" style="--totalPosts: {{ collections.posts.length + 1 }}">
+        {% for year, items in archive %}
+
+            <li class="List-Item">
+                <h2 class="Heading">
+                    <span class="">{{ year}}</span></h2>
+                <ol class="ArchiveList">
+                    {% for item in items %}
+                        <li>
+                            <a class="Link ArchiveList-Link MarginTop-s" href="{{item.url}}">{{ item.data.title }}</a>
+
+                        </li>
+                    {% endfor %}
+                </ol>
+
+            </li>
+
+        {% endfor %}
+    </ul>
+</section>
+
+{# <ul class="List MarginTop-xxl">
+        {% for post in collections.posts %}
+            <li class="List-Item">
+                <h1 class="Heading">
+                    <a class="List-ItemLink" href="{{ post.url }}">
+                        <span class="TitleShadow">{{ post.data.title }}</span>
+                        <span aria-hiddent="true" class="List-ItemVisitedStatus"></span>
+                    </a>
+                </h1>
+                <div class="Text--Secondary MarginY-xxs">
+                    <time>{{ post.date | date_formatted }}</time>
+                    <span>
+            {% for tag in post.data.tags %}
+              <a href="/tags/{{tag}}" class="TagLink">#{{ tag }}</a>
+            {% endfor %}
+          </span>
+                </div>
+                <p class="Margin-0">{{ post.data.summary | markdownify_inline | safe }}</p>
+                <div>
+                    <a href="{{ post.url }}" class="Link" >read more ⟶</a>
+                </div>
+            </li>
+            <hr class="List-Separator">
+        {% endfor %}
+    </ul> #}

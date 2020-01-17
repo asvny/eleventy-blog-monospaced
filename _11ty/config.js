@@ -1,5 +1,6 @@
 const pluginRss = require('@11ty/eleventy-plugin-rss');
 const syntaxHighlight = require('@11ty/eleventy-plugin-syntaxhighlight');
+const lazyImagesPlugin = require('eleventy-plugin-lazyimages');
 
 const filters = require('./filters');
 const shortcodes = require('./shortcodes');
@@ -20,10 +21,12 @@ module.exports = function (eleventyConfig) {
     // Plugins
     eleventyConfig.addPlugin(pluginRss);
     eleventyConfig.addPlugin(syntaxHighlight);
+    eleventyConfig.addPlugin(lazyImagesPlugin);
 
     // Collections
+    const livePosts = post => post.date <= new Date() && !post.data.draft;
     eleventyConfig.addCollection('posts', collection => {
-        return collection.getFilteredByGlob('**/posts/*.md').reverse();
+        return collection.getFilteredByGlob('**/posts/*.md').filter(livePosts).reverse();
     });
 
     // Transforms
@@ -48,3 +51,5 @@ module.exports = function (eleventyConfig) {
         passthroughFileCopy: true,
     };
 };
+
+

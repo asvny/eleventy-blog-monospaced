@@ -1,6 +1,6 @@
 ---
 title: A simple post
-date: "2019-06-18"
+date: "2017-06-18"
 summary: "A simple post to demonstrate how a normal blog post looks on Monospaced. Content is all set in the “Body” field as markdown and Eleventy transforms it into a proper HTML post"
 tags:
   - demo-content
