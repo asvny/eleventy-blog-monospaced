@@ -28,10 +28,8 @@ It’s small, but hella mighty:
 
 Here it is in a context where it makes a fancy `<aside>` and a `<figure>` element bleed out of their parent container.
 
-<iframe height="300" style="width: 100%;" scrolling="no" title="Piccalilli CSS Utility — Issue  #2 — Full bleed utility" src="//codepen.io/andybelldesign/embed/Nmxrwv/?height=300&theme-id=dark&default-tab=css,result" frameborder="no" allowtransparency="true" allowfullscreen="true">
-  See the Pen <a href='https://codepen.io/andybelldesign/pen/Nmxrwv/'>Piccalilli CSS Utility — Issue  #2 — Full bleed utility</a> by Andy Bell
-  (<a href='https://codepen.io/andybelldesign'>@andybelldesign</a>) on <a href='https://codepen.io'>CodePen</a>.
-</iframe>
+<lite-iframe  style="width: 100%; height: 300px" scrolling="no" title="Piccalilli CSS Utility — Issue  #2 — Full bleed utility" src="//codepen.io/andybelldesign/embed/Nmxrwv/?height=300&theme-id=dark&default-tab=css,result" frameborder="no" allowtransparency="true" allowfullscreen="true">
+</lite-iframe>
 
 The `.full-bleed` utility gives those elements prominence and _importantly_ keeps their semantic place in the page. Just how I like it.
 

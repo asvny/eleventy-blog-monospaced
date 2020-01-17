@@ -28,8 +28,8 @@ It’s small, but hella mighty:
 
 Here it is in a context where it makes a fancy `<aside>` and a `<figure>` element bleed out of their parent container.
 
-<iframe  style="width: 100%;height: 300pxs" scrolling="no" title="Piccalilli CSS Utility — Issue  #2 — Full bleed utility" src="//codepen.io/andybelldesign/embed/Nmxrwv/?height=300&theme-id=dark&default-tab=css,result" frameborder="no" allowtransparency="true" allowfullscreen="true">
-</iframe>
+<lite-iframe  style="width: 100%;height: 300px" scrolling="no" title="Piccalilli CSS Utility — Issue  #2 — Full bleed utility" src="//codepen.io/andybelldesign/embed/Nmxrwv/?height=300&theme-id=dark&default-tab=css,result" frameborder="no" allowtransparency="true" allowfullscreen="true">
+</lite-iframe>
 
 The `.full-bleed` utility gives those elements prominence and _importantly_ keeps their semantic place in the page. Just how I like it.
 

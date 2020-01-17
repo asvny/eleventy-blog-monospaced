@@ -1,6 +1,9 @@
 const pluginRss = require('@11ty/eleventy-plugin-rss');
 const syntaxHighlight = require('@11ty/eleventy-plugin-syntaxhighlight');
 const lazyImagesPlugin = require('eleventy-plugin-lazyimages');
+const markdownIt = require("markdown-it");
+const markdownItAnchor = require("markdown-it-anchor");
+const path = require('path');
 
 const filters = require('./filters');
 const shortcodes = require('./shortcodes');
@@ -21,7 +24,9 @@ module.exports = function (eleventyConfig) {
     // Plugins
     eleventyConfig.addPlugin(pluginRss);
     eleventyConfig.addPlugin(syntaxHighlight);
-    eleventyConfig.addPlugin(lazyImagesPlugin);
+    eleventyConfig.addPlugin(lazyImagesPlugin, {
+        transformImgPath: src => isAbsolutePath(src) ? src : path.join(__dirname, '../src/_includes', src)
+    });
 
     // Collections
     const livePosts = post => post.date <= new Date() && !post.data.draft;
@@ -32,8 +37,20 @@ module.exports = function (eleventyConfig) {
     // Transforms
     eleventyConfig.addTransform('htmlmin', filters.htmlmin);
 
+    /* Markdown Overrides */
+    let markdownLibrary = markdownIt({
+        html: true,
+        breaks: true,
+        linkify: true
+    }).use(markdownItAnchor, {
+        permalink: true,
+        permalinkBefore: true,
+        permalinkSymbol: ""
+    });
+    eleventyConfig.setLibrary("md", markdownLibrary);
+
     eleventyConfig
-        .addPassthroughCopy('src/assets')
+        .addPassthroughCopy({ 'src/_includes/assets': 'assets' })
         .addPassthroughCopy('src/manifest.json')
         .addPassthroughCopy('src/_redirects');
 
@@ -53,3 +70,15 @@ module.exports = function (eleventyConfig) {
 };
 
 
+
+function isAbsolutePath(src) {
+    if (typeof src !== 'string') {
+        throw new TypeError(`Expected a \`string\`, got \`${typeof src}\``);
+    }
+
+    if (/^[a-zA-Z]:\\/.test(src)) {
+        return false;
+    }
+
+    return /^[a-zA-Z][a-zA-Z\d+\-.]*:/.test(src);
+};

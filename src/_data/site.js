@@ -5,6 +5,8 @@ module.exports = {
   url: 'https://github.com/asvny/eleventy-blog-monospaced',
   baseUrl: '/',
   maxPostsInHomePage: 5,
+  author: 'Asvny',
+  email: 'monospaced_@xyz.com',
 
   gaAnalytics: null,
   currentYear: (new Date()).getFullYear(),

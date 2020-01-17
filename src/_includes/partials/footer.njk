@@ -1,8 +1,10 @@
 <hr class="Separator MarginTop-xxl">
 <footer class="Footer">
   <nav>
+    <a href="{{site.url}}" rel="noopener" target="_blank" class="Link Footer-Link">about</a>
+
     {% for site, link in site.social %}
-      <a href="{{link | mailHref }}" target="_blank" class="Link Footer-Link">{{ site }}</a>
+      <a href="{{link | mailHref }}" rel="noopener" target="_blank" class="Link Footer-Link">{{ site }}</a>
     {% endfor %}
 
     <a href="/rss" class="Link Footer-Link">rss</a>
